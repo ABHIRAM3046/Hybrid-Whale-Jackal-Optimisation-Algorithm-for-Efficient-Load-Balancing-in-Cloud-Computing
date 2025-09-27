@@ -195,6 +195,7 @@ We welcome contributions to improve the algorithm and expand its applications. P
 - Documentation improvements
 - Bug fixes and code optimization
 
+[![DOI](https://zenodo.org/badge/1065336936.svg)](https://doi.org/10.5281/zenodo.17214819)
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
