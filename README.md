@@ -198,43 +198,6 @@ We welcome contributions to improve the algorithm and expand its applications. P
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📚 Citation
-
-If you use this work in your research, please cite:
-
-```bibtex
-@article{hybridwjoa2024,
-    title={Hybrid Whale-Jackal Optimization Algorithm for Efficient Load Balancing in Cloud Computing},
-    author={[Your Name]},
-    journal={PeerJ Computer Science},
-    year={2024},
-    publisher={PeerJ},
-    note={Submitted for publication}
-}
-```
-
-## 📞 Contact
-
-For questions, suggestions, or collaborations:
-
-- **Author**: [Your Name]
-- **Email**: [your.email@institution.edu]
-- **GitHub**: [@ABHIRAM3046](https://github.com/ABHIRAM3046)
-- **Institution**: [Your Institution]
-
-## 🙏 Acknowledgments
-
-- CloudSim development team for the simulation framework
-- Research community for algorithm inspirations
-- [Any funding organizations or collaborators]
-
-## 📝 Recent Updates
-
-- **v1.0.0**: Initial implementation of Hybrid WOA-GJO algorithm
-- **v1.1.0**: Performance optimization and parallel processing support
-- **v1.2.0**: Enhanced load balancing mechanisms
-
 ---
 
 **Note**: This implementation is designed for research and educational purposes. For production deployment, additional optimization and testing may be required.
