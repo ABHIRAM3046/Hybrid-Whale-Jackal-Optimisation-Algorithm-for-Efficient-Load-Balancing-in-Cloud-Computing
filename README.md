@@ -140,9 +140,10 @@ The algorithm leverages WOA's exploration in early iterations and transitions to
 The algorithm is evaluated using the following key performance indicators:
 
 - **Makespan**: Total execution time for all tasks
-- **Load Balance Factor**: Distribution uniformity across VMs
+- **Load Standard Deviation**: Distribution uniformity across VMs
 - **Throughput**: Tasks completed per unit time
 - **Response Time**: Average task completion time
+- **Jain's Fairness Index**: measures the fairness/equity of workload distribution among VMs
 
 ## 📈 Results
 
@@ -165,7 +166,8 @@ Hybrid-Whale-Jackal-Optimisation-Algorithm/
 ├── src/
 │   ├── Hybrid/
 │   │   ├── HybridGJO_WOA.java
-│   │   └── HybridGJO_WOA_LoadBalancing.java
+│   │   ├── HybridGJO_WOA_LoadBalancing.java
+|   |   └── HybridMetricsAnalysis.java
 │   ├── WOAGJO/
 │   │   ├── GJOCloudSimExample.java
 │   │   ├── GoldenJackalAlgorithm.java
