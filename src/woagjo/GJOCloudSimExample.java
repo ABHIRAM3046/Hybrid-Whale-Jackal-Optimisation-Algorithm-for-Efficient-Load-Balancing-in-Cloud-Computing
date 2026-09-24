@@ -6,6 +6,8 @@ import org.cloudbus.cloudsim.provisioners.BwProvisionerSimple;
 import org.cloudbus.cloudsim.provisioners.PeProvisionerSimple;
 import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple;
 
+import cloudsim.Hybrid.HybridMetricsAnalysis;
+
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -22,8 +24,8 @@ public class GJOCloudSimExample {
 
             DatacenterBroker broker = new DatacenterBroker("Broker");
 
-            List<Vm> vmList = createVMs(broker.getId(), 8);  // Increased VMs to avoid out-of-bounds issue
-            List<Cloudlet> cloudletList = createCloudlets(broker.getId(), 2100);
+            List<Vm> vmList = createVMs(broker.getId(), 16);  // Increased VMs to avoid out-of-bounds issue
+            List<Cloudlet> cloudletList = createCloudlets(broker.getId(), 4600);
 
             broker.submitVmList(vmList);
             broker.submitCloudletList(cloudletList);
@@ -46,6 +48,7 @@ public class GJOCloudSimExample {
             System.out.printf("Total Cloudlets: %d%n", cloudletList.size());
             System.out.printf("Execution Time: %.2f seconds%n", totalTimeInSeconds);
             System.out.printf("Requests Per Second (RPS): %.2f%n", rps);
+            HybridMetricsAnalysis.printMetrics(cloudletList,vmList);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,11 +58,11 @@ public class GJOCloudSimExample {
     public static Datacenter createDatacenter(String name) {
         List<Host> hostList = new ArrayList<>();
         List<Pe> peList = new ArrayList<>();
-        peList.add(new Pe(0, new PeProvisionerSimple(500000)));
+        peList.add(new Pe(0, new PeProvisionerSimple(5000000)));
 
         int ram = 524288;
         long storage = 1000000;
-        int bw = 10000;
+        int bw = 100000;
 
         hostList.add(new Host(
                 0, new RamProvisionerSimple(ram),
@@ -82,8 +85,8 @@ public class GJOCloudSimExample {
         List<Vm> vms = new ArrayList<>();
 
         long size = 10000;
-        int ram =  524288/numVMs;       
-        int mips = 25000;
+        int ram = 524288 /numVMs;       
+        int mips = 500;
         long bw = 1000;
         int pesNumber = 1;
         String vmm = "Xen";

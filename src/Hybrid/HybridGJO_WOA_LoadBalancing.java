@@ -23,6 +23,7 @@ import org.cloudbus.cloudsim.core.CloudSim;
 import org.cloudbus.cloudsim.provisioners.BwProvisionerSimple;
 import org.cloudbus.cloudsim.provisioners.PeProvisionerSimple;
 import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple;
+import cloudsim.Hybrid.HybridMetricsAnalysis;
 
 public class HybridGJO_WOA_LoadBalancing {
     public static void main(String[] args) {
@@ -36,8 +37,8 @@ public class HybridGJO_WOA_LoadBalancing {
             Datacenter datacenter = createDatacenter("Datacenter_0");
             DatacenterBroker broker = new DatacenterBroker("Broker");
             
-            List<Vm> vmList = createVMs(broker.getId(), 8);
-            List<Cloudlet> cloudletList = createCloudlets(broker.getId(), 2100);
+            List<Vm> vmList = createVMs(broker.getId(), 16);
+            List<Cloudlet> cloudletList = createCloudlets(broker.getId(), 4600);
             broker.submitVmList(vmList);
             broker.submitCloudletList(cloudletList);
             
@@ -51,6 +52,7 @@ public class HybridGJO_WOA_LoadBalancing {
             CloudSim.stopSimulation();
             
             printCloudletList(cloudletList, startTime, endTime);
+            HybridMetricsAnalysis.printMetrics(cloudletList,vmList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -59,9 +61,9 @@ public class HybridGJO_WOA_LoadBalancing {
     private static Datacenter createDatacenter(String name) {
         List<Host> hostList = new ArrayList<>();
         List<Pe> peList = new ArrayList<>();
-        peList.add(new Pe(0, new PeProvisionerSimple(400000)));
+        peList.add(new Pe(0, new PeProvisionerSimple(40000000)));
 
-        hostList.add(new Host(0, new RamProvisionerSimple(65536), new BwProvisionerSimple(10000),
+        hostList.add(new Host(0, new RamProvisionerSimple(524288), new BwProvisionerSimple(100000),
                 1000000, peList, new VmSchedulerTimeShared(peList)));
 
         DatacenterCharacteristics characteristics = new DatacenterCharacteristics(
@@ -79,7 +81,7 @@ public class HybridGJO_WOA_LoadBalancing {
     private static List<Vm> createVMs(int userId, int numVMs) {
         List<Vm> vms = new ArrayList<>();
         for (int i = 0; i < numVMs; i++) {
-            vms.add(new Vm(i, userId, 25000, 1, 65536 / numVMs, 1000, 10000, "Xen", new CloudletSchedulerTimeShared()));
+            vms.add(new Vm(i, userId, 500, 1, 524288 / numVMs, 1000, 10000, "Xen", new CloudletSchedulerTimeShared()));
         }
         return vms;
     }
@@ -87,8 +89,8 @@ public class HybridGJO_WOA_LoadBalancing {
     private static List<Cloudlet> createCloudlets(int userId, int numCloudlets) {
         List<Cloudlet> cloudlets = new ArrayList<>();
         for (int i = 0; i < numCloudlets; i++) {
-            cloudlets.add(new Cloudlet(i, 200000, 1, 300, 300, new UtilizationModelFull(),
-                    new UtilizationModelFull(), new UtilizationModelFull()));
+            cloudlets.add(new Cloudlet(i, 200000, 1, 300, 300,new UtilizationModelFull(),
+                   new UtilizationModelFull(), new UtilizationModelFull()));
             cloudlets.get(i).setUserId(userId);
         }
         return cloudlets;

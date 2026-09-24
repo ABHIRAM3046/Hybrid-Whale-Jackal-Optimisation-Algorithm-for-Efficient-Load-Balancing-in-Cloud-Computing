@@ -6,6 +6,8 @@ import org.cloudbus.cloudsim.provisioners.BwProvisionerSimple;
 import org.cloudbus.cloudsim.provisioners.PeProvisionerSimple;
 import org.cloudbus.cloudsim.provisioners.RamProvisionerSimple;
 
+import cloudsim.Hybrid.HybridMetricsAnalysis;
+
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -31,8 +33,8 @@ public class RoundRobinCloudSimExample {
             DatacenterBroker broker = new DatacenterBroker("Broker");
 
             // Step 4: Create VMs and Cloudlets
-            List<Vm> vmList = createVMs(broker.getId(), 8); // 8 VMs
-            List<Cloudlet> cloudletList = createCloudlets(broker.getId(), 2100); // 2100 Cloudlets
+            List<Vm> vmList = createVMs(broker.getId(), 16); // 8 VMs
+            List<Cloudlet> cloudletList = createCloudlets(broker.getId(), 4600); // 2100 Cloudlets
             broker.submitVmList(vmList);
             broker.submitCloudletList(cloudletList);
 
@@ -62,6 +64,7 @@ public class RoundRobinCloudSimExample {
             System.out.printf("Total Cloudlets: %d%n", cloudletList.size());
             System.out.printf("Execution Time: %.2f seconds%n", totalTimeInSeconds);
             System.out.printf("Requests Per Second (RPS): %.2f%n", rps);
+            HybridMetricsAnalysis.printMetrics(cloudletList, vmList);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -72,12 +75,12 @@ public class RoundRobinCloudSimExample {
     public static Datacenter createDatacenter(String name) {
         List<Host> hostList = new ArrayList<>();
         List<Pe> peList = new ArrayList<>();
-        int mips = 400000;
+        int mips = 4000000;
         peList.add(new Pe(0, new PeProvisionerSimple(mips)));
 
         int ram = 524288;
-        long storage = 1000000;
-        int bw = 10000;
+        long storage = 10000000;
+        int bw = 1000000;
 
         hostList.add(new Host(
                 0,

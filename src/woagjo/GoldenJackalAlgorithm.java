@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class GoldenJackalAlgorithm {
     private int maxIterations = 100;
-    private int searchAgents = 10;
+    private int searchAgents = 30;
     private double[][] positions;
     private double[] fitness;
     private int numCloudlets, numVMs;

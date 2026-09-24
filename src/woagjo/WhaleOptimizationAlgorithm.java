@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class WhaleOptimizationAlgorithm {
     private int maxIterations = 100;
-    private int searchAgents = 10;
+    private int searchAgents = 15;
     private double a, A, C, l, p;
     private double[][] positions;
     private double[] fitness;
